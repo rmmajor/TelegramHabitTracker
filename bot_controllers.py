@@ -1,12 +1,7 @@
-import os
 import telebot
-from dotenv import load_dotenv
-from configs import messages
+from configs import messages, env_vars
 
-load_dotenv()  # loads .env variables
-BOT_TOKEN = os.environ.get('TELEGRAM_BOT_API_TOKEN')  # retrieves token from .env
-
-bot = telebot.TeleBot(BOT_TOKEN)
+bot = telebot.TeleBot(env_vars.TELEGRAM_BOT_API_TOKEN)
 
 
 @bot.message_handler(commands=['start'])
