@@ -14,5 +14,10 @@ def send_welcome(message):
     bot.reply_to(message, messages.HELP_COMMAND)
 
 
+@bot.message_handler(commands=['new_habit'])
+def send_welcome(message):
+    bot.reply_to(message, messages.NEW_HABIT_COMMAND)
+
+
 if __name__ == '__main__':
     bot.infinity_polling()
