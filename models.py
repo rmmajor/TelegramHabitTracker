@@ -12,8 +12,8 @@ Session = scoped_session(SessionFactory)
 Base = declarative_base()
 
 
-class User(Base):
-    __tablename__ = "user"
+class BotUser(Base):
+    __tablename__ = "bot_user"
 
     telegram_id = Column('telegram_id', sqlalchemy.BigInteger, primary_key=True)
     created_at = Column('created_at', sqlalchemy.TIMESTAMP, nullable=False)
@@ -54,7 +54,7 @@ class Habit(Base):
     repeat_times = Column('repeat_times', sqlalchemy.Integer, nullable=True)  # when null, repeat forever
 
     consistency_id = Column('habit_id', ForeignKey(Consistency.id))
-    user_id = Column('user_id', ForeignKey(User.telegram_id))
+    user_id = Column('user_id', ForeignKey(BotUser.telegram_id))
 
 
 class HabitTracks(Base):

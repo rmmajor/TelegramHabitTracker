@@ -1,6 +1,11 @@
 from marshmallow import Schema, fields
 
 
+class NewUser(Schema):
+    telegram_id = fields.Integer()
+    created_at = fields.DateTime()
+
+
 class NewHabit(Schema):
 
     name = fields.String()
@@ -15,12 +20,12 @@ class NewHabit(Schema):
 class NewConsistency(Schema):
 
     each = fields.Integer(default=1)
-    type = Column(
-        'type',
-        sqlalchemy.Enum('hour', 'day', 'week', 'month', 'year',
-                        name='consistency_types',
-                        create_type=False)
-    )
+    # type = Column(
+    #     'type',
+    #     sqlalchemy.Enum('hour', 'day', 'week', 'month', 'year',
+    #                     name='consistency_types',
+    #                     create_type=False)
+    # )
 
     sunday = fields.Boolean(default=False)
     monday = fields.Boolean(default=False)
