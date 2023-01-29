@@ -11,13 +11,9 @@ def register_user(telegram_id):
     }
 
     user_schema = NewUser()
-    user_schema.telegram_id = telegram_id
-    user_schema.created_at = datetime.now()
-    schema_to_load = dict(user_schema)
-
-    print(type(schema_to_load), type(user_data))
+    schema_to_load = user_schema.load(user_data)
 
     try:
         new_user = create_entry(BotUser, **schema_to_load)
     except sqlalchemy.exc.IntegrityError:
-        pass
+        print("user already exists")
