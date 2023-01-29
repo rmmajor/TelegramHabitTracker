@@ -1,16 +1,16 @@
-from marshmallow import Schema, fields
+from marshmallow import Schema, fields, validate
 
 
 class NewUser(Schema):
-    telegram_id = fields.Integer()
+    telegram_id = fields.Integer()  # add unique validation
     created_at = fields.DateTime()
 
 
 class NewHabit(Schema):
 
-    name = fields.String()
-    fire_at = fields.Time()
-    habit_start = fields.Date()
+    name = fields.String(required=True)
+    fire_at = fields.Time(required=True)
+    habit_start = fields.Date()  # current day
     repeat_times = fields.Integer()
 
     consistency_id = fields.Integer()
@@ -20,13 +20,7 @@ class NewHabit(Schema):
 class NewConsistency(Schema):
 
     each = fields.Integer(default=1)
-    # type = Column(
-    #     'type',
-    #     sqlalchemy.Enum('hour', 'day', 'week', 'month', 'year',
-    #                     name='consistency_types',
-    #                     create_type=False)
-    # )
-
+    type = fields.String(validate=validate.OneOf(['hour', 'day', 'week', 'month', 'year']))
     sunday = fields.Boolean(default=False)
     monday = fields.Boolean(default=False)
     tuesday = fields.Boolean(default=False)

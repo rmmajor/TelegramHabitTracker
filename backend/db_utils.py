@@ -1,4 +1,4 @@
-from models import *
+from .models import *
 
 
 def create_entry(model_class, *, commit=True, **kwargs):
